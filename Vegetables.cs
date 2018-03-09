@@ -10,6 +10,11 @@ public class Vegetables : MonoBehaviour {
 	private float verticalVelocity;
 	private float speed;
 
+	private void Start() {
+
+		startVeggie (2.0f, 1, -1); // verticalVelocity of 2.0f, xspeed of 1 and xstart of -1
+	}
+
 	public void startVeggie(float verticalVelocity, float xSpeed, float xStart) // x axis speed and starting position
 	{
 		IsActive = true; // setting the boolean isActive to true 
@@ -31,3 +36,31 @@ public class Vegetables : MonoBehaviour {
 	
 	
 	}
+
+
+
+	public void SlicingVeggie() 
+	{
+
+		if (verticalVelocity < 0.5f) { // when you slice the vegetable give it a small bump up
+			verticalVelocity = 0.5f; // being pushed upwards creating that effect
+
+			speed = speed * 0.5f; // setting the speed of the slice to 0.5floats
+
+		}
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
