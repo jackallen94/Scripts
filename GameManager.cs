@@ -7,6 +7,26 @@ public class GameManager : MonoBehaviour {
 	private List<Vegetables> veggies = new List<Vegetables> (); //instantiate our vegatables
 	public GameObject vegetablesPrefab; // grab the objects that are prefabs of our vegetables object (a prefab allows us to easily create duplicates that store all properties inside the prefab) 
 
+	private void Update()
+	{
+
+		if (Time.time - lastSpawn > normalSpawn) { // if the last time a veggie was spawned is greater than the normal spawn time of 2f than spawn a new veggie
+
+			Vegetables v = GetVegetable ();
+			//float ranX = Random.Range(-1.5f,1.5f);
+
+			v.startVeggie ();
+			normalSpawn = Time.time;
+
+
+		}
+
+
+
+	}
+
+	private float lastSpawn;
+	private float normalSpawn = 2.0f;
 
 	private Vegetables GetVegetable() //  this will either get me something that is already isActive seen in our vegetables script or it will create a new instance
 	{
