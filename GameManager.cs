@@ -13,8 +13,8 @@ public class GameManager : MonoBehaviour {
 		if (Time.time - lastSpawn > normalSpawn) { // if the last time a veggie was spawned is greater than the normal spawn time of 2f than spawn a new veggie
 
 			Vegetables v = GetVegetable ();
-			float ranX = Random.Range(-1.5f,1.5f);
-			v.startVeggie (Random.Range(1.5f,3.0f), ranX, -ranX); // picking up the values of startVeggie and giving them values such as velocity which can be seen in vegetables script
+			float ranX = Random.Range(-1.65f,1.65f);
+			v.startVeggie (Random.Range(1.85f,2.75f), ranX, -ranX); // picking up the values of startVeggie and giving them values such as velocity which can be seen in vegetables script
 			normalSpawn = Time.time; // normalspawn time = running time of the game
 
 
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour {
 
 	}
 
-	private float lastSpawn;
+	private float lastSpawn = 2.0f; // subject to change 
 	private float normalSpawn = 2.0f;
 
 	private Vegetables GetVegetable() //  this will either get me something that is already isActive seen in our vegetables script or it will create a new instance
