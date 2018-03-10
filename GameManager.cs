@@ -13,6 +13,16 @@ public class GameManager : MonoBehaviour {
 
 		Vegetables v = veggies.Find (x => !x.IsActive); // this was quite difficult basically this looks through the list of veggies to find the first one that is not active, x being the veggie its looking at right now and also setting vegetable to variable v
 		// if the veggie is not active right now return the veggie to v field and stop executing. 
+
+		if (v == null) 
+		{ // if we haven't been able to find a veggie because they are all being used right now
+
+			v = Instantiate(vegetablesPrefab).GetComponent<Vegetables>(); // create a new instance of a vegetable using a prefab
+			veggies.Add(v);
+		
+		}
+
+		return v; // return vegetables ending our pooling of vegetables saving memory by using prefabs for optimisation purposes.
 	}
 
 
