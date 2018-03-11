@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour {
 	private List<Vegetables> veggies = new List<Vegetables> (); //instantiate our vegatables
 	public GameObject vegetablesPrefab; // grab the objects that are prefabs of our vegetables object (a prefab allows us to easily create duplicates that store all properties inside the prefab) 
 
+	public Transform trail; 
+
 	private void Update()
 	{
 
@@ -20,6 +22,12 @@ public class GameManager : MonoBehaviour {
 
 		}
 
+		if (Input.GetMouseButton (0)) // check if im holding the left click or touch on a device
+		{ 
+
+			Camera.main.ScreenToWorldPoint        // transferring the screen coordinates using the mouse using unity screentoworldpoint allowing them to show up in our world or game 
+
+		}
 
 
 	}
