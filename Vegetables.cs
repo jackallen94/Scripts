@@ -10,10 +10,12 @@ public class Vegetables : MonoBehaviour {
 	private float verticalVelocity;
 	private float speed;
 
-	private void Start() {
+	private bool isSliced = false;
 
-		startVeggie (2.0f, 1, -1); // verticalVelocity of 2.0f, xspeed of 1 and xstart of -1
-	}
+//	private void Start() {
+//
+//		startVeggie (2.0f, 1, -1); // verticalVelocity of 2.0f, xspeed of 1 and xstart of -1
+//	}
 
 	public void startVeggie(float verticalVelocity, float xSpeed, float xStart) // x axis speed and starting position
 	{
@@ -21,6 +23,7 @@ public class Vegetables : MonoBehaviour {
 		speed = xSpeed;
 		this.verticalVelocity = verticalVelocity; // this makes it less confusing setting one parameter to another.
 		transform.position = new Vector3(xStart,0,0); // when we start Y is at 0  
+		isSliced =false; // resetting the veggie
 	}
 
 	private void Update() 
@@ -41,12 +44,15 @@ public class Vegetables : MonoBehaviour {
 
 	public void SlicingVeggie() 
 	{
+		if (isSliced) // if isSliced is true then return so cannot run twice
+			return;
+			
 
 		if (verticalVelocity < 0.5f) { // when you slice the vegetable give it a small bump up
 			verticalVelocity = 0.5f; // being pushed upwards creating that effect
 
 			speed = speed * 0.5f; // setting the speed of the slice to 0.5floats
-
+			isSliced = true; // set isSliced to true if the veggie is being hit
 		}
 
 	}

@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI; // using unity user interface
 
 public class GameManager : MonoBehaviour {
 
-	private const float SLICE_FORCE = 400.0f;
+	private const float SLICE_FORCE = 400.0f; // see github for explanation part 19
 
 	private List<Vegetables> veggies = new List<Vegetables> (); //instantiate our vegatables
 	public GameObject vegetablesPrefab; // grab the objects that are prefabs of our vegetables object (a prefab allows us to easily create duplicates that store all properties inside the prefab) 
@@ -18,13 +19,30 @@ public class GameManager : MonoBehaviour {
 
 	private Collider2D[] veggieCollider;   // collider array used to check which collider you hit last frame
 
+
+	private int score;
+	private int highScore;
+
+	private int life;
+
+
+
+
+
 	private void Start()
 	{
 
 		veggieCollider = new Collider2D[0];
+		newGame();
 
 
 
+	}
+
+	private void newGame()
+	{
+		score = 0;
+		life = 3;
 
 	}
 
@@ -67,7 +85,8 @@ public class GameManager : MonoBehaviour {
 					for (int i = 0; i < veggieCollider.Length; i++) {
 						if (c2 == veggieCollider [i]) 
 						{
-							Debug.Log ("Hit");
+							c2.GetComponent<Vegetables> ().SlicingVeggie();
+							//Debug.Log ("Hit");
 						}
 
 					}
