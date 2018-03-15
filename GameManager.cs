@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
+	private const float SLICE_FORCE = 400.0f;
+
 	private List<Vegetables> veggies = new List<Vegetables> (); //instantiate our vegatables
 	public GameObject vegetablesPrefab; // grab the objects that are prefabs of our vegetables object (a prefab allows us to easily create duplicates that store all properties inside the prefab) 
 
@@ -58,7 +60,7 @@ public class GameManager : MonoBehaviour {
 
 			//Debug.Log (Input.mousePosition);
 			//Debug.Log((Input.mousePosition - lastMousePosition).sqrMagnitude)) 
-			if((Input.mousePosition - lastMousePosition).sqrMagnitude > 400) 
+			if((Input.mousePosition - lastMousePosition).sqrMagnitude > SLICE_FORCE) 
 			{
 				// if the sqMagnitude is bigger than 9.0f 3 squared is 9 speed
 				foreach (Collider2D c2 in thisFramesVeggie) {
