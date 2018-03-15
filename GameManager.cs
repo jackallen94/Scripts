@@ -7,7 +7,12 @@ public class GameManager : MonoBehaviour {
 	private List<Vegetables> veggies = new List<Vegetables> (); //instantiate our vegatables
 	public GameObject vegetablesPrefab; // grab the objects that are prefabs of our vegetables object (a prefab allows us to easily create duplicates that store all properties inside the prefab) 
 
+	private float lastSpawn = 1.5f; // subject to change 
+	private float normalSpawn = 2.0f;
+
 	public Transform trail; 
+
+	private Collider[] veggieCollider;       // collider array used to check which collider you hit last frame
 
 	private void Update()
 	{
@@ -25,6 +30,7 @@ public class GameManager : MonoBehaviour {
 
 		if (Input.GetMouseButton (0)) // check if im holding the left click or touch on a device
 		{ 
+			Physics.RaycastAll
 
 			Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);       // transferring the screen coordinates using the mouse using unity screentoworldpoint allowing them to show up in our world or game 
 			// return vector 3 x and y position
@@ -35,8 +41,6 @@ public class GameManager : MonoBehaviour {
 
 	}
 
-	private float lastSpawn = 1.5f; // subject to change 
-	private float normalSpawn = 2.0f;
 
 	private Vegetables GetVegetable() //  this will either get me something that is already isActive seen in our vegetables script or it will create a new instance
 	{
