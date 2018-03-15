@@ -19,11 +19,13 @@ public class GameManager : MonoBehaviour {
 
 	private Collider2D[] veggieCollider;   // collider array used to check which collider you hit last frame
 
-
+	// UI part of game
 	private int score;
 	private int highScore;
-
 	private int life;
+	public Text scoreText;
+	public Text highScoreText;
+	public Image[] lifepoints;
 
 
 
