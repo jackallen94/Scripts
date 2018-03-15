@@ -42,7 +42,8 @@ public class GameManager : MonoBehaviour {
 			// overlapPointAll returns us a 2d collider array
 			// everytime our finger is dragged on the screen check where finger is and check to see was a collider hit that are vegetables
 			// if we do hit them then store all of them in an array
-
+			foreach (Collider2D c2 in veggieCollider)
+				Debug.Log(c2.name); // debugging hit detection
 
 
 	//Physics2D.RaycastAll(new Vector2(camPos.x,camPos.y), Camera.main.transform.forward
