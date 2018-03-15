@@ -26,8 +26,10 @@ public class GameManager : MonoBehaviour {
 		if (Input.GetMouseButton (0)) // check if im holding the left click or touch on a device
 		{ 
 
-			Debug.log(Camera.main.ScreenToWorldPoint (Input.mousePosition));       // transferring the screen coordinates using the mouse using unity screentoworldpoint allowing them to show up in our world or game 
-			// return vector 3
+			Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);       // transferring the screen coordinates using the mouse using unity screentoworldpoint allowing them to show up in our world or game 
+			// return vector 3 x and y position
+			pos.z = -1;
+			trail.position = pos;
 		}
 
 
