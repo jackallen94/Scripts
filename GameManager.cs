@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour {
 
 	public Transform trail; 
 
-	private Collider[] veggieCollider;       // collider array used to check which collider you hit last frame
+	private Collider2D[] veggieCollider;       // collider array used to check which collider you hit last frame
 
 	private void Update()
 	{
@@ -30,12 +30,23 @@ public class GameManager : MonoBehaviour {
 
 		if (Input.GetMouseButton (0)) // check if im holding the left click or touch on a device
 		{ 
-			Physics.RaycastAll
+			
 
 			Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);       // transferring the screen coordinates using the mouse using unity screentoworldpoint allowing them to show up in our world or game 
 			// return vector 3 x and y position
+//			Physics2D.RaycastAll(new Vector2(pos.x,pos.y),Camera.main.transform.forward,
 			pos.z = -1;
 			trail.position = pos;
+
+			veggieCollider = Physics2D.OverlapPointAll (new Vector2 (pos.x, pos.y), LayerMask.GetMask ("Vegetables"));
+			// overlapPointAll returns us a 2d collider array
+			// everytime our finger is dragged on the screen check where finger is and check to see was a collider hit that are vegetables
+			// if we do hit them then store all of them in an array
+
+
+
+	//Physics2D.RaycastAll(new Vector2(camPos.x,camPos.y), Camera.main.transform.forward
+//			Physics2D.RaycastAll(new Vector2(pos.x,pos.y),
 		}
 
 
