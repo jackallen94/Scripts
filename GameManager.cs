@@ -10,7 +10,9 @@ public class GameManager : MonoBehaviour {
 	private float lastSpawn = 1.5f; // subject to change 
 	private float normalSpawn = 2.0f;
 
-	public Transform trail; 
+	public Transform trail; // game component trail
+
+	private Vector3 lastMousePosition;
 
 	private Collider2D[] veggieCollider;   // collider array used to check which collider you hit last frame
 
@@ -27,6 +29,8 @@ public class GameManager : MonoBehaviour {
 	private void Update()
 	{
 
+		//Debug.Log (Input.mousePosition); // debug the mouse position
+
 		if (Time.time - lastSpawn > normalSpawn) { // if the last time a veggie was spawned is greater than the normal spawn time of 2f than spawn a new veggie
 
 			Vegetables v = GetVegetable ();
@@ -41,7 +45,6 @@ public class GameManager : MonoBehaviour {
 		if (Input.GetMouseButton (0)) // check if im holding the left click or touch on a device
 		{ 
 			
-
 			Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);       // transferring the screen coordinates using the mouse using unity screentoworldpoint allowing them to show up in our world or game 
 			// return vector 3 x and y position
 //			Physics2D.RaycastAll(new Vector2(pos.x,pos.y),Camera.main.transform.forward,
@@ -53,25 +56,26 @@ public class GameManager : MonoBehaviour {
 			// everytime our finger is dragged on the screen check where finger is and check to see was a collider hit that are vegetables
 			// if we do hit them then store all of them in an array
 
-			if(
-
-			foreach (Collider2D c2 in thisFramesVeggie)
+			//Debug.Log (Input.mousePosition);
+			//Debug.Log((Input.mousePosition - lastMousePosition).sqrMagnitude)) 
+			if((Input.mousePosition - lastMousePosition).sqrMagnitude > 400) 
 			{
-				for (int i = 0; i < veggieCollider.Length; i++) 
-				{
-					if (c2 == veggieCollider [i]) 
-					{
+				// if the sqMagnitude is bigger than 9.0f 3 squared is 9 speed
+				foreach (Collider2D c2 in thisFramesVeggie) {
+					for (int i = 0; i < veggieCollider.Length; i++) {
+						if (c2 == veggieCollider [i]) 
+						{
+							Debug.Log ("Hit");
+						}
 
-						Debug.Log("Hit");
 					}
 
 				}
-
-
 						// c2 is a collider
 				//Debug.Log(c2.name); // debugging hit detection
 			}
-
+			
+			lastMousePosition = Input.mousePosition;
 			veggieCollider = thisFramesVeggie;
 
 	//Physics2D.RaycastAll(new Vector2(camPos.x,camPos.y), Camera.main.transform.forward
