@@ -15,24 +15,25 @@ public class GameManager : MonoBehaviour {
 		if (Time.time - lastSpawn > normalSpawn) { // if the last time a veggie was spawned is greater than the normal spawn time of 2f than spawn a new veggie
 
 			Vegetables v = GetVegetable ();
-			float ranX = Random.Range(-1.65f,1.65f);
-			v.startVeggie (Random.Range(1.85f,2.75f), ranX, -ranX); // picking up the values of startVeggie and giving them values such as velocity which can be seen in vegetables script
+			float ranX = Random.Range (-1.65f, 1.65f);
+			v.startVeggie (Random.Range (1.85f, 2.75f), ranX, -ranX); // picking up the values of startVeggie and giving them values such as velocity which can be seen in vegetables script
 			normalSpawn = Time.time; // normalspawn time = running time of the game
 
 
 		}
+	
 
 		if (Input.GetMouseButton (0)) // check if im holding the left click or touch on a device
 		{ 
 
-			Camera.main.ScreenToWorldPoint        // transferring the screen coordinates using the mouse using unity screentoworldpoint allowing them to show up in our world or game 
-
+			Debug.log(Camera.main.ScreenToWorldPoint (Input.mousePosition));       // transferring the screen coordinates using the mouse using unity screentoworldpoint allowing them to show up in our world or game 
+			// return vector 3
 		}
 
 
 	}
 
-	private float lastSpawn = 2.0f; // subject to change 
+	private float lastSpawn = 1.5f; // subject to change 
 	private float normalSpawn = 2.0f;
 
 	private Vegetables GetVegetable() //  this will either get me something that is already isActive seen in our vegetables script or it will create a new instance
