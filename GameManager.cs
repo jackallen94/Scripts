@@ -12,7 +12,17 @@ public class GameManager : MonoBehaviour {
 
 	public Transform trail; 
 
-	private Collider2D[] veggieCollider;       // collider array used to check which collider you hit last frame
+	private Collider2D[] veggieCollider;   // collider array used to check which collider you hit last frame
+
+	private void Start()
+	{
+
+		veggieCollider = new Collider2D[0];
+
+
+
+
+	}
 
 	private void Update()
 	{
@@ -38,13 +48,31 @@ public class GameManager : MonoBehaviour {
 			pos.z = -1;
 			trail.position = pos;
 
-			veggieCollider = Physics2D.OverlapPointAll (new Vector2 (pos.x, pos.y), LayerMask.GetMask ("Vegetables"));
+			Collider2D[] thisFramesVeggie = Physics2D.OverlapPointAll (new Vector2 (pos.x, pos.y), LayerMask.GetMask ("Vegetables"));
 			// overlapPointAll returns us a 2d collider array
 			// everytime our finger is dragged on the screen check where finger is and check to see was a collider hit that are vegetables
 			// if we do hit them then store all of them in an array
-			foreach (Collider2D c2 in veggieCollider)
-				Debug.Log(c2.name); // debugging hit detection
 
+			if(
+
+			foreach (Collider2D c2 in thisFramesVeggie)
+			{
+				for (int i = 0; i < veggieCollider.Length; i++) 
+				{
+					if (c2 == veggieCollider [i]) 
+					{
+
+						Debug.Log("Hit");
+					}
+
+				}
+
+
+						// c2 is a collider
+				//Debug.Log(c2.name); // debugging hit detection
+			}
+
+			veggieCollider = thisFramesVeggie;
 
 	//Physics2D.RaycastAll(new Vector2(camPos.x,camPos.y), Camera.main.transform.forward
 //			Physics2D.RaycastAll(new Vector2(pos.x,pos.y),
