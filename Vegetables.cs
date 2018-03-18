@@ -34,9 +34,13 @@ public class Vegetables : MonoBehaviour {
 		verticalVelocity -= Gamegravity * Time.deltaTime; // using the const above allows us to set the gravity for 2.0 floats for all vegetables. 
 		transform.position += new Vector3(speed,verticalVelocity,0) * Time.deltaTime; // setting z to 0 and deltatime is the amount of time it takes to complete the last frame 
 	
-		if (transform.position.y < -1) // if the position of the veggie on the y axis is smaller than -1 then we don't see it
-			IsActive = false; // ready to reuse the object that is not active
-	
+		if (transform.position.y < -1)
+		{// if the position of the veggie on the y axis is smaller than -1 then we don't see it
+			IsActive = false;
+			// ready to reuse the object that is not active
+			if (!isSliced)
+				GameManager.Instance.loseLife(); // accessing the instance of the gamemanager seen in gamemanager script and calling the lose life finction.
+		}
 	
 	}
 

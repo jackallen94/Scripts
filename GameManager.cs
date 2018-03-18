@@ -5,6 +5,10 @@ using UnityEngine.UI; // using unity user interface
 
 public class GameManager : MonoBehaviour {
 
+
+	// creating an instance of the game manager so it can be accessed 
+	public static GameManager Instance{set;get;} // property
+
 	private const float SLICE_FORCE = 400.0f; // see github for explanation part 19
 
 	private List<Vegetables> veggies = new List<Vegetables> (); //instantiate our vegatables
@@ -28,14 +32,19 @@ public class GameManager : MonoBehaviour {
 	public Image[] lifepoints;
 
 
+	private void Awake()
+	{
 
+		Instance = this; // Accessing the instance of the gameManager
+
+	}
 
 
 	private void Start()
 	{
 
-		veggieCollider = new Collider2D[0];
-		newGame();
+		veggieCollider = new Collider2D[0]; // start the collider at beginning of array which is always 0 
+		newGame(); // new game is launched
 
 
 
@@ -44,7 +53,7 @@ public class GameManager : MonoBehaviour {
 	private void newGame()
 	{
 		score = 0;
-		life = 3;
+		life = 3; // when a new game is launched these are the default values
 
 	}
 
@@ -127,9 +136,33 @@ public class GameManager : MonoBehaviour {
 	}
 
 
+	public void loseLife() 
+	{
 
 
 
+		life--;
+		lifepoints [life].enabled = false;
+		if (life < 0) 
+		{
+
+			Death();
+
+
+
+		}
+			
+
+	}
+
+	public void Death()
+	{
+
+
+
+
+
+	}
 
 
 
