@@ -138,19 +138,19 @@ public class GameManager : MonoBehaviour {
 
 	public void loseLife() 
 	{
+		if (life == 0)
+			return;
+
 		life--;
 		lifepoints [life].enabled = false;
-		if (life == -1) 
-		{
+		if (life == 0)
 
 			Death();
-
-
 
 		}
 			
 
-	}
+
 
 	public void Death()
 	{
