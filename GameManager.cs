@@ -185,7 +185,7 @@ public class GameManager : MonoBehaviour {
 	public void pauseGame()
 	{
 		pauseMenu.SetActive(!pauseMenu.activeSelf); // reverse state of pause menu
-		Time.timeScale = 0; // setting the time to 0 as game is paused
+		Time.timeScale = (Time.timeScale==0) ? 1 : 0 ; // setting the time to 0 as game is paused
 
 
 
