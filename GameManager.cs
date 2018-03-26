@@ -138,12 +138,9 @@ public class GameManager : MonoBehaviour {
 
 	public void loseLife() 
 	{
-
-
-
 		life--;
 		lifepoints [life].enabled = false;
-		if (life < 0) 
+		if (life == -1) 
 		{
 
 			Death();
@@ -157,7 +154,7 @@ public class GameManager : MonoBehaviour {
 
 	public void Death()
 	{
-
+		Debug.Log ("Death");
 
 
 
