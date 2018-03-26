@@ -136,6 +136,21 @@ public class GameManager : MonoBehaviour {
 	}
 
 
+	public void incrementScore(int scoreAmount)
+	{
+
+		score += scoreAmount;
+		scoreText.text = score.ToString(); // converting to the current score to a string
+
+		if(score > highScore) // if current score is bigger than highscore
+			{
+			highScore = score;
+			highScoreText.text = "BEST:" + highScore.ToString(); // concatinate so we are displaying best score on screen
+
+			}
+
+	}
+
 	public void loseLife() 
 	{
 		if (life == 0)

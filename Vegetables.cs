@@ -39,7 +39,7 @@ public class Vegetables : MonoBehaviour {
 			IsActive = false;
 			// ready to reuse the object that is not active
 			if (!isSliced)
-				GameManager.Instance.loseLife(); // accessing the instance of the gamemanager seen in gamemanager script and calling the lose life finction.
+				GameManager.Instance.loseLife(); // accessing the instance of the gamemanager seen in gamemanager script and calling the lose life function.
 		}
 	
 	}
@@ -57,6 +57,10 @@ public class Vegetables : MonoBehaviour {
 
 			speed = speed * 0.5f; // setting the speed of the slice to 0.5floats
 			isSliced = true; // set isSliced to true if the veggie is being hit
+
+
+
+			GameManager.Instance.incrementScore(1); // increment the score by 1 locating the increment score fucntion in the gameManager script
 		}
 
 	}
