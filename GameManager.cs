@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour {
 
 	public Transform trail; // game component trail
 
+	private bool isPaused; // equalled to false by default 
+
 	private Vector3 lastMousePosition;
 
 	private Collider2D[] veggieCollider;   // collider array used to check which collider you hit last frame
@@ -55,16 +57,22 @@ public class GameManager : MonoBehaviour {
 		score = 0;
 		life = 3; // when a new game is launched these are the default values
 		pauseMenu.SetActive(false);
+		scoreText.text = score.ToString(); // on a new game start to update score instead of it being static
+		highScore = PlayerPrefs.GetInt("Score"); // updates the highscore and stores it
+		highScoreText.text = "BEST:" + highScore.ToString();
 		Time.timeScale = 1;
 		// timescale used for slowing time or slow motion
 		// in this case used to stop run time of game
 		// time.delta time is essentially being set to 0 
 
+		isPaused = false;
+
 	}
 
 	private void Update()
 	{
-
+		if (isPaused)
+			return; // not running if its paused
 		//Debug.Log (Input.mousePosition); // debug the mouse position
 
 		if (Time.time - lastSpawn > normalSpawn) { // if the last time a veggie was spawned is greater than the normal spawn time of 2f than spawn a new veggie
@@ -151,7 +159,7 @@ public class GameManager : MonoBehaviour {
 			{
 			highScore = score;
 			highScoreText.text = "BEST:" + highScore.ToString(); // concatinate so we are displaying best score on screen
-
+			PlayerPrefs.SetInt("Score", highScore); // to load the highscore
 			}
 
 	}
@@ -184,7 +192,9 @@ public class GameManager : MonoBehaviour {
 
 	public void pauseGame()
 	{
-		pauseMenu.SetActive(!pauseMenu.activeSelf); // reverse state of pause menu
+		pauseMenu.SetActive(!pauseMenu.activeSelf);
+		// reverse state of pause menu
+		isPaused = pauseMenu.activeSelf; // if paused then paused menu is active
 		Time.timeScale = (Time.timeScale==0) ? 1 : 0 ; // setting the time to 0 as game is paused
 
 
