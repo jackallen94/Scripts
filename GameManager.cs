@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour {
 	public Text scoreText;
 	public Text highScoreText;
 	public Image[] lifepoints;
+	public GameObject pauseMenu; // creating new gameobject
 
 
 	private void Awake()
@@ -47,13 +48,17 @@ public class GameManager : MonoBehaviour {
 		newGame(); // new game is launched
 
 
-
 	}
 
 	private void newGame()
 	{
 		score = 0;
 		life = 3; // when a new game is launched these are the default values
+		pauseMenu.SetActive(false);
+		Time.timeScale = 1;
+		// timescale used for slowing time or slow motion
+		// in this case used to stop run time of game
+		// time.delta time is essentially being set to 0 
 
 	}
 
@@ -177,7 +182,17 @@ public class GameManager : MonoBehaviour {
 	}
 
 
+	public void pauseGame()
+	{
+		pauseMenu.SetActive(!pauseMenu.activeSelf); // reverse state of pause menu
+		Time.timeScale = 0; // setting the time to 0 as game is paused
 
+
+
+
+
+
+	}
 
 
 
