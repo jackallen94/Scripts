@@ -32,7 +32,10 @@ public class GameManager : MonoBehaviour {
 	public Text scoreText;
 	public Text highScoreText;
 	public Image[] lifepoints;
-	public GameObject pauseMenu; // creating new gameobject
+	public GameObject pauseMenu; // creating new gameobject that can be accessed in the inspector using public
+	public GameObject deathMenu;
+
+
 
 
 	private void Awake()
@@ -52,7 +55,7 @@ public class GameManager : MonoBehaviour {
 
 	}
 
-	private void newGame()
+	public void newGame() // changed to public as it will need to be called from a button eg deathmenu
 	{
 		score = 0;
 		life = 3; // when a new game is launched these are the default values
@@ -66,6 +69,7 @@ public class GameManager : MonoBehaviour {
 		// time.delta time is essentially being set to 0 
 
 		isPaused = false;
+		deathMenu.SetActive(false);
 
 	}
 
@@ -182,8 +186,8 @@ public class GameManager : MonoBehaviour {
 
 	public void Death()
 	{
-		Debug.Log ("Death");
-
+		isPaused = true;
+		deathMenu.SetActive(true);
 
 
 
