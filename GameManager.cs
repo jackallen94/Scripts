@@ -69,6 +69,15 @@ public class GameManager : MonoBehaviour {
 		// time.delta time is essentially being set to 0 
 
 		isPaused = false;
+
+		foreach( Image i in lifepoints) // getting all the images in lifepoints
+			i.enabled = true; // turn on lifepoints once a new game is started
+
+		foreach (Vegetables v in veggies)
+			Destroy(v.gameObject); // removing the game object from scene
+
+		veggies.Clear(); // remove all veggies from scene and start fresh
+
 		deathMenu.SetActive(false);
 
 	}
