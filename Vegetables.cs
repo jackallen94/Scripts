@@ -7,9 +7,12 @@ public class Vegetables : MonoBehaviour {
 	private const float Gamegravity = 2.0f; // setting a private constant of the gravity to 2 floats so this cannot be changed
 
 	public bool IsActive{set; get;} // if object is not active we can reuse it without having to create new veggie
+	public SpriteRenderer sRenderer; // drag and drop the sprite renderer component
+
+
 	private float verticalVelocity;
 	private float speed;
-	private SpriteRenderer sRenderer;
+
 
 	private bool isSliced = false;
 
@@ -21,15 +24,8 @@ public class Vegetables : MonoBehaviour {
 	public Sprite[] sprites;// creating an array of sprites
 	private int spriteIndex; // index position of the array
 	private float lastSpriteUpdate; // last frame sprite updated
-	private float spriteUpdateDelta = 0.2f;// time between each frame
+	private float spriteUpdateDelta = 0.115f;// time between each frame
 
-	private void Start()
-	{
-		sRenderer = GetComponent<SpriteRenderer>(); // getting the component sprite renderer
-
-
-
-	}
 
 	public void startVeggie(float verticalVelocity, float xSpeed, float xStart) // x axis speed and starting position
 	{
@@ -54,12 +50,12 @@ public class Vegetables : MonoBehaviour {
 		
 		{
 
-			if (Time.time - lastSpriteUpdate > spriteUpdateDelta) 
+			if (spriteIndex != sprites.Length-1 && Time.time - lastSpriteUpdate > spriteUpdateDelta) // go and update the sprite
 			
 			{
 
 				lastSpriteUpdate = Time.time;
-				spriteIndex++;
+				spriteIndex++; // adding in the array starts at 0 and goes up
 				sRenderer.sprite = sprites [spriteIndex];
 			}
 

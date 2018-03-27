@@ -14,8 +14,8 @@ public class GameManager : MonoBehaviour {
 	private List<Vegetables> veggies = new List<Vegetables> (); //instantiate our vegatables
 	public GameObject vegetablesPrefab; // grab the objects that are prefabs of our vegetables object (a prefab allows us to easily create duplicates that store all properties inside the prefab) 
 
-	private float lastSpawn = 1.5f; // subject to change 
-	private float normalSpawn = 2.0f;
+	private float lastSpawn = 1.0f;// subject to change 
+	private float normalSpawn;
 
 	public Transform trail; // game component trail
 
@@ -64,6 +64,8 @@ public class GameManager : MonoBehaviour {
 		highScore = PlayerPrefs.GetInt("Score"); // updates the highscore and stores it
 		highScoreText.text = "BEST:" + highScore.ToString();
 		Time.timeScale = 1;
+	
+
 		// timescale used for slowing time or slow motion
 		// in this case used to stop run time of game
 		// time.delta time is essentially being set to 0 
@@ -91,8 +93,8 @@ public class GameManager : MonoBehaviour {
 		if (Time.time - lastSpawn > normalSpawn) { // if the last time a veggie was spawned is greater than the normal spawn time of 2f than spawn a new veggie
 
 			Vegetables v = GetVegetable ();
-			float ranX = Random.Range (-1.65f, 1.65f);
-			v.startVeggie (Random.Range (1.85f, 2.75f), ranX, -ranX); // picking up the values of startVeggie and giving them values such as velocity which can be seen in vegetables script
+			float ranX = Random.Range (-5.65f, 3.65f);
+			v.startVeggie (Random.Range (1.85f, 6.75f), ranX, -ranX); // picking up the values of startVeggie and giving them values such as velocity which can be seen in vegetables script
 			normalSpawn = Time.time; // normalspawn time = running time of the game
 
 
@@ -173,6 +175,7 @@ public class GameManager : MonoBehaviour {
 			highScore = score;
 			highScoreText.text = "BEST:" + highScore.ToString(); // concatinate so we are displaying best score on screen
 			PlayerPrefs.SetInt("Score", highScore); // to load the highscore
+			//PlayerPrefs.DeleteAll(); to delete highscore in unity
 			}
 
 	}
