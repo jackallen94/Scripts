@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; // using unity user interface
+using UnityEngine.SceneManagement; // changing scenes
 
 public class GameManager : MonoBehaviour {
 
@@ -220,7 +221,12 @@ public class GameManager : MonoBehaviour {
 
 	}
 
+	public void toSplash()
+	{
 
+		SceneManager.LoadScene("Splash");
+
+	}
 
 
 
