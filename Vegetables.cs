@@ -25,6 +25,7 @@ public class Vegetables : MonoBehaviour {
 	private int spriteIndex; // index position of the array
 	private float lastSpriteUpdate; // last frame sprite updated
 	private float spriteUpdateDelta = 0.115f;// time between each frame
+	private float rotationSpeed;
 
 
 	public void startVeggie(float verticalVelocity, float xSpeed, float xStart) // x axis speed and starting position
@@ -32,10 +33,12 @@ public class Vegetables : MonoBehaviour {
 		IsActive = true; // setting the boolean isActive to true 
 		speed = xSpeed;
 		this.verticalVelocity = verticalVelocity; // this makes it less confusing setting one parameter to another.
+
 		transform.position = new Vector3(xStart,0,0); // when we start Y is at 0  
+		rotationSpeed = Random.Range(-180,180); // random rotation every second between a range of 30 degrees and 180
 		isSliced =false; // resetting the veggie
-		spriteIndex = 0;
-		sRenderer.sprite = sprites[spriteIndex];
+	spriteIndex = 0;
+	sRenderer.sprite = sprites[spriteIndex];
 	}
 
 	private void Update() 
@@ -45,7 +48,7 @@ public class Vegetables : MonoBehaviour {
 		
 		verticalVelocity -= Gamegravity * Time.deltaTime; // using the const above allows us to set the gravity for 2.0 floats for all vegetables. 
 		transform.position += new Vector3(speed,verticalVelocity,0) * Time.deltaTime; // setting z to 0 and deltatime is the amount of time it takes to complete the last frame 
-	
+		transform.Rotate(new Vector3(0,0,rotationSpeed) * Time.deltaTime); // delta time so when we pause game veggie will stop rotating
 		if (isSliced) 
 		
 		{

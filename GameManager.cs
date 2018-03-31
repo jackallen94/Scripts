@@ -12,8 +12,14 @@ public class GameManager : MonoBehaviour {
 
 	private const float SLICE_FORCE = 400.0f; // see github for explanation part 19
 
-	private List<Vegetables> veggies = new List<Vegetables> (); //instantiate our vegatables
+	private List<Vegetables> veggies = new List<Vegetables> ();
+	//instantiate our vegatables
 	public GameObject vegetablesPrefab; // grab the objects that are prefabs of our vegetables object (a prefab allows us to easily create duplicates that store all properties inside the prefab) 
+public GameObject tomatoPrefab;
+public GameObject carrotPrefab;
+// grab the objects that are prefabs of our vegetables object (a prefab allows us to easily create duplicates that store all properties inside the prefab) 
+
+
 
 	private float lastSpawn = 1.0f;// subject to change 
 	private float normalSpawn;
@@ -78,6 +84,8 @@ public class GameManager : MonoBehaviour {
 
 		foreach (Vegetables v in veggies)
 			Destroy(v.gameObject); // removing the game object from scene
+
+
 
 		veggies.Clear(); // remove all veggies from scene and start fresh
 
@@ -156,7 +164,12 @@ public class GameManager : MonoBehaviour {
 		if (v == null) 
 		{ // if we haven't been able to find a veggie because they are all being used right now
 
-			v = Instantiate(vegetablesPrefab).GetComponent<Vegetables>(); // create a new instance of a vegetable using a prefab
+		
+		v = Instantiate(carrotPrefab).GetComponent<Vegetables>();
+			veggies.Add(v);
+		v = Instantiate(tomatoPrefab).GetComponent<Vegetables>();
+			veggies.Add(v);
+			v = Instantiate(vegetablesPrefab).GetComponent<Vegetables>();// create a new instance of a vegetable using a prefab
 			veggies.Add(v);
 		
 		}
