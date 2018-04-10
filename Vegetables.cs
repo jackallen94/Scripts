@@ -24,7 +24,7 @@ public class Vegetables : MonoBehaviour {
 	public Sprite[] sprites;// creating an array of sprites
 	private int spriteIndex; // index position of the array
 	private float lastSpriteUpdate; // last frame sprite updated
-	private float spriteUpdateDelta = 0.115f;// time between each frame
+	private float spriteUpdateDelta = 0.101f;// time between each frame
 	private float rotationSpeed;
 
 
@@ -65,7 +65,7 @@ public class Vegetables : MonoBehaviour {
 		}
 
 
-		if (transform.position.y < -1)
+		if (transform.position.y < -15)
 		{// if the position of the veggie on the y axis is smaller than -1 then we don't see it
 			IsActive = false;
 			// ready to reuse the object that is not active

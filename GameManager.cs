@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour {
 
 	private const float SLICE_FORCE = 400.0f; // see github for explanation part 19
 
-	private List<Vegetables> veggies = new List<Vegetables> ();
+	private List<Vegetables> veggies = new List<Vegetables> (); // pooling mechanic to grab our prefabs below
 	//instantiate our vegatables
 	public GameObject vegetablesPrefab; // grab the objects that are prefabs of our vegetables object (a prefab allows us to easily create duplicates that store all properties inside the prefab) 
 	public GameObject tomatoPrefab;
@@ -23,8 +23,8 @@ public class GameManager : MonoBehaviour {
 
 
 
-	private float lastSpawn = 1.0f;// subject to change 
-	private float normalSpawn;
+	private float lastSpawn;// subject to change 
+	private float normalSpawn = 2.0f;
 
 	public Transform trail; // game component trail
 
@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour {
 		pauseMenu.SetActive(false);
 		scoreText.text = score.ToString(); // on a new game start to update score instead of it being static
 		highScore = PlayerPrefs.GetInt("Score"); // updates the highscore and stores it
-		highScoreText.text = "BEST:" + highScore.ToString();
+		highScoreText.text = "BEST :  " + highScore.ToString();
 		Time.timeScale = 1;
 	
 
@@ -104,9 +104,9 @@ public class GameManager : MonoBehaviour {
 		if (Time.time - lastSpawn > normalSpawn) { // if the last time a veggie was spawned is greater than the normal spawn time of 2f than spawn a new veggie
 
 			Vegetables v = GetVegetable ();
-			float ranX = Random.Range (-5.65f, 3.65f);
-			v.startVeggie (Random.Range (1.85f, 6.75f), ranX, -ranX); // picking up the values of startVeggie and giving them values such as velocity which can be seen in vegetables script
-			normalSpawn = Time.time; // normalspawn time = running time of the game
+			float ranX = Random.Range (-1.65f, 1.65f); // spawn towards left then go toward right side 
+			v.startVeggie (Random.Range (1.85f, 2.75f), ranX, -ranX); // picking up the values of startVeggie and giving them values such as velocity which can be seen in vegetables script
+			lastSpawn = Time.time; // normalspawn time = running time of the game
 
 
 		}
