@@ -15,8 +15,10 @@ public class GameManager : MonoBehaviour {
 	private List<Vegetables> veggies = new List<Vegetables> ();
 	//instantiate our vegatables
 	public GameObject vegetablesPrefab; // grab the objects that are prefabs of our vegetables object (a prefab allows us to easily create duplicates that store all properties inside the prefab) 
-public GameObject tomatoPrefab;
-public GameObject carrotPrefab;
+	public GameObject tomatoPrefab;
+	public GameObject carrotPrefab;
+	public GameObject brocPrefab;
+	public GameObject bomb;
 // grab the objects that are prefabs of our vegetables object (a prefab allows us to easily create duplicates that store all properties inside the prefab) 
 
 
@@ -65,7 +67,7 @@ public GameObject carrotPrefab;
 	public void newGame() // changed to public as it will need to be called from a button eg deathmenu
 	{
 		score = 0;
-		life = 3; // when a new game is launched these are the default values
+		life = 4; // when a new game is launched these are the default values
 		pauseMenu.SetActive(false);
 		scoreText.text = score.ToString(); // on a new game start to update score instead of it being static
 		highScore = PlayerPrefs.GetInt("Score"); // updates the highscore and stores it
@@ -167,9 +169,17 @@ public GameObject carrotPrefab;
 		
 		v = Instantiate(carrotPrefab).GetComponent<Vegetables>();
 			veggies.Add(v);
+
 		v = Instantiate(tomatoPrefab).GetComponent<Vegetables>();
 			veggies.Add(v);
+
+			v = Instantiate(brocPrefab).GetComponent<Vegetables>();
+			veggies.Add(v);
+
 			v = Instantiate(vegetablesPrefab).GetComponent<Vegetables>();// create a new instance of a vegetable using a prefab
+			veggies.Add(v);
+
+			v = Instantiate(bomb).GetComponent<Vegetables>();// create a new instance of a vegetable using a prefab
 			veggies.Add(v);
 		
 		}
