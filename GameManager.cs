@@ -12,20 +12,24 @@ public class GameManager : MonoBehaviour {
 
 	private const float SLICE_FORCE = 400.0f; // see github for explanation part 19
 
+	public Sprite TREES;
+	public Sprite background;
+
 	private List<Vegetables> veggies = new List<Vegetables> (); // pooling mechanic to grab our prefabs below
 	//instantiate our vegatables
 	public GameObject vegetablesPrefab; // grab the objects that are prefabs of our vegetables object (a prefab allows us to easily create duplicates that store all properties inside the prefab) 
 	public GameObject tomatoPrefab;
 	public GameObject carrotPrefab;
 	public GameObject brocPrefab;
-	public GameObject bomb;
 	public GameObject onionPrefab;
+	public GameObject bomb;
+
 // grab the objects that are prefabs of our vegetables object (a prefab allows us to easily create duplicates that store all properties inside the prefab) 
 
 
 
 	private float lastSpawn;// subject to change 
-	private float normalSpawn = 2.0f;
+	private float normalSpawn = 2;
 
 	public Transform trail; // game component trail
 
@@ -99,14 +103,17 @@ public class GameManager : MonoBehaviour {
 
 	private void Update()
 	{
+
+
 		if (isPaused)
 			return; // not running if its paused
 		//Debug.Log (Input.mousePosition); // debug the mouse position
 
+
 		if (Time.time - lastSpawn > normalSpawn) { // if the last time a veggie was spawned is greater than the normal spawn time of 2f than spawn a new veggie
 
 			Vegetables v = GetVegetable ();
-			float ranX = Random.Range (-1.65f, 1.65f); // spawn towards left then go toward right side 
+			float ranX = Random.Range (-1.65f, 2.65f); // spawn towards left then go toward right side 
 			v.startVeggie (Random.Range (1.85f, 2.75f), ranX, -ranX); // picking up the values of startVeggie and giving them values such as velocity which can be seen in vegetables script
 			lastSpawn = Time.time; // normalspawn time = running time of the game
 
@@ -168,6 +175,11 @@ public class GameManager : MonoBehaviour {
 		if (v == null) 
 		{ // if we haven't been able to find a veggie because they are all being used right now
 
+			v = Instantiate(vegetablesPrefab).GetComponent<Vegetables>();// create a new instance of a vegetable using a prefab
+			veggies.Add(v);
+
+			v = Instantiate(onionPrefab).GetComponent<Vegetables>();
+			veggies.Add(v);
 		
 		v = Instantiate(carrotPrefab).GetComponent<Vegetables>();
 			veggies.Add(v);
@@ -178,14 +190,11 @@ public class GameManager : MonoBehaviour {
 			v = Instantiate(brocPrefab).GetComponent<Vegetables>();
 			veggies.Add(v);
 
-			v = Instantiate(vegetablesPrefab).GetComponent<Vegetables>();// create a new instance of a vegetable using a prefab
-			veggies.Add(v);
 
 			v = Instantiate(bomb).GetComponent<Vegetables>();// create a new instance of a vegetable using a prefab
 			veggies.Add(v);
 
-			v = Instantiate(onionPrefab).GetComponent<Vegetables>();
-			veggies.Add(v);
+
 		
 		}
 
@@ -207,18 +216,35 @@ public class GameManager : MonoBehaviour {
 			//PlayerPrefs.DeleteAll(); to delete highscore in unity
 			}
 
-		if (highScore == 40) {
-
-			{
-				SceneManager.LoadScene ("changeBackground");
-				changeBackground.SetActive (true);
-
-
-			}
-
-
+		if (score == 30) {
+			setSprite ();
 
 		}
+//		if (score == 5) {
+//
+//			{
+//				gameObject.GetComponent<SpriteRenderer>().sprite = TREES;
+//			SceneManager.LoadScene ("changeBackground");
+//			changeBackground.SetActive (true);
+//
+//
+//			}
+//
+//
+//
+//		}
+
+	}
+
+	void setSprite()
+	{
+		gameObject.GetComponent<SpriteRenderer> ().sprite = TREES;
+
+	}
+
+	void setSprite1()
+	{
+		gameObject.GetComponent<SpriteRenderer> ().sprite = background;
 
 	}
 
