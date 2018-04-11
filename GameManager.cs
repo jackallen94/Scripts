@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject carrotPrefab;
 	public GameObject brocPrefab;
 	public GameObject bomb;
+	public GameObject onionPrefab;
 // grab the objects that are prefabs of our vegetables object (a prefab allows us to easily create duplicates that store all properties inside the prefab) 
 
 
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour {
 	public Image[] lifepoints;
 	public GameObject pauseMenu; // creating new gameobject that can be accessed in the inspector using public
 	public GameObject deathMenu;
+	public GameObject changeBackground;
 
 
 
@@ -181,6 +183,9 @@ public class GameManager : MonoBehaviour {
 
 			v = Instantiate(bomb).GetComponent<Vegetables>();// create a new instance of a vegetable using a prefab
 			veggies.Add(v);
+
+			v = Instantiate(onionPrefab).GetComponent<Vegetables>();
+			veggies.Add(v);
 		
 		}
 
@@ -201,6 +206,19 @@ public class GameManager : MonoBehaviour {
 			PlayerPrefs.SetInt("Score", highScore); // to load the highscore
 			//PlayerPrefs.DeleteAll(); to delete highscore in unity
 			}
+
+		if (highScore == 40) {
+
+			{
+				SceneManager.LoadScene ("changeBackground");
+				changeBackground.SetActive (true);
+
+
+			}
+
+
+
+		}
 
 	}
 
