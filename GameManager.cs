@@ -12,8 +12,6 @@ public class GameManager : MonoBehaviour {
 
 	private const float SLICE_FORCE = 400.0f; // see github for explanation part 19
 
-	public Sprite TREES;
-	public Sprite background;
 
 	private List<Vegetables> veggies = new List<Vegetables> (); // pooling mechanic to grab our prefabs below
 	//instantiate our vegatables
@@ -23,6 +21,8 @@ public class GameManager : MonoBehaviour {
 	public GameObject brocPrefab;
 	public GameObject onionPrefab;
 	public GameObject bomb;
+
+	public Sprite TREES;
 
 // grab the objects that are prefabs of our vegetables object (a prefab allows us to easily create duplicates that store all properties inside the prefab) 
 
@@ -216,7 +216,7 @@ public class GameManager : MonoBehaviour {
 			//PlayerPrefs.DeleteAll(); to delete highscore in unity
 			}
 
-		if (score == 30) {
+		if (score == 2) {
 			setSprite ();
 
 		}
@@ -242,11 +242,6 @@ public class GameManager : MonoBehaviour {
 
 	}
 
-	void setSprite1()
-	{
-		gameObject.GetComponent<SpriteRenderer> ().sprite = background;
-
-	}
 
 	public void loseLife() 
 	{
