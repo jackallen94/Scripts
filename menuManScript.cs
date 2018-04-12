@@ -8,7 +8,7 @@ public class menuManScript : MonoBehaviour {
 	public void ToGame() // brings user to the game
 	{
 
-
+		soundManagerScript.Instance.PlaySound(0);
 		SceneManager.LoadScene("Main");
 
 
