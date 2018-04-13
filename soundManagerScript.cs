@@ -22,8 +22,7 @@ public class soundManagerScript : MonoBehaviour {
 
 	public void PlaySound(int soundIndex)
 	{
-
-		AudioSource.PlayClipAtPoint (allSounds[soundIndex],Camera.main.transform.position);
+		AudioSource.PlayClipAtPoint (allSounds[soundIndex],transform.position);
 
 
 	}

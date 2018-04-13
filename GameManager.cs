@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour {
 
 	public void newGame() // changed to public as it will need to be called from a button eg deathmenu
 	{
+		//soundManagerScript.Instance.PlaySound(0); // getting the click sound from the preloader scene and soundManagerScript
 		score = 0;
 		life = 4; // when a new game is launched these are the default values
 		pauseMenu.SetActive(false);
@@ -216,7 +217,7 @@ public class GameManager : MonoBehaviour {
 			//PlayerPrefs.DeleteAll(); to delete highscore in unity
 			}
 
-		if (score == 2) {
+		if (score == 15) {
 			setSprite ();
 
 		}
@@ -271,6 +272,7 @@ public class GameManager : MonoBehaviour {
 
 	public void pauseGame()
 	{
+		soundManagerScript.Instance.PlaySound(0); 
 		pauseMenu.SetActive(!pauseMenu.activeSelf);
 		// reverse state of pause menu
 		isPaused = pauseMenu.activeSelf; // if paused then paused menu is active

@@ -89,7 +89,7 @@ public class Vegetables : MonoBehaviour {
 			speed = speed * 0.5f; // setting the speed of the slice to 0.5floats
 			isSliced = true; // set isSliced to true if the veggie is being hit
 
-
+			soundManagerScript.Instance.PlaySound(1); 
 
 			GameManager.Instance.incrementScore(1); // increment the score by 1 locating the increment score fucntion in the gameManager script
 		}
