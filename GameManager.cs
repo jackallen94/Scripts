@@ -7,10 +7,11 @@ using UnityEngine.SceneManagement; // changing scenes
 public class GameManager : MonoBehaviour {
 
 
+
 	// creating an instance of the game manager so it can be accessed 
 	public static GameManager Instance{set;get;} // property
 
-	private const float SLICE_FORCE = 400.0f; // see github for explanation part 19
+	private const float SLICE_FORCE = 0.0001f; // see github for explanation part 19
 
 
 	private List<Vegetables> veggies = new List<Vegetables> (); // pooling mechanic to grab our prefabs below
@@ -29,7 +30,7 @@ public class GameManager : MonoBehaviour {
 
 
 	private float lastSpawn;// subject to change 
-	private float normalSpawn = 2;
+	private float normalSpawn = 1f;
 
 	public Transform trail; // game component trail
 
@@ -67,6 +68,7 @@ public class GameManager : MonoBehaviour {
 		veggieCollider = new Collider2D[0]; // start the collider at beginning of array which is always 0 
 		newGame(); // new game is launched
 
+	
 
 	}
 
@@ -104,8 +106,7 @@ public class GameManager : MonoBehaviour {
 
 	private void Update()
 	{
-
-
+		
 		if (isPaused)
 			return; // not running if its paused
 		//Debug.Log (Input.mousePosition); // debug the mouse position
@@ -114,8 +115,8 @@ public class GameManager : MonoBehaviour {
 		if (Time.time - lastSpawn > normalSpawn) { // if the last time a veggie was spawned is greater than the normal spawn time of 2f than spawn a new veggie
 
 			Vegetables v = GetVegetable ();
-			float ranX = Random.Range (-1.65f, 2.65f); // spawn towards left then go toward right side 
-			v.startVeggie (Random.Range (1.85f, 2.75f), ranX, -ranX); // picking up the values of startVeggie and giving them values such as velocity which can be seen in vegetables script
+			float ranX = Random.Range (-3.65f, 6.65f); // spawn towards left then go toward right side 
+			v.startVeggie (Random.Range (3.85f, 5.75f), ranX, -ranX); // picking up the values of startVeggie and giving them values such as velocity which can be seen in vegetables script
 			lastSpawn = Time.time; // normalspawn time = running time of the game
 
 
@@ -217,7 +218,7 @@ public class GameManager : MonoBehaviour {
 			//PlayerPrefs.DeleteAll(); to delete highscore in unity
 			}
 
-		if (score == 15) {
+		if (score == 2) {
 			setSprite ();
 
 		}
@@ -284,6 +285,8 @@ public class GameManager : MonoBehaviour {
 
 
 	}
+
+
 
 	public void toSplash()
 	{

@@ -6,6 +6,8 @@ public class Vegetables : MonoBehaviour {
 
 	private const float Gamegravity = 2.0f; // setting a private constant of the gravity to 2 floats so this cannot be changed
 
+
+
 	public bool IsActive{set; get;} // if object is not active we can reuse it without having to create new veggie
 	public SpriteRenderer sRenderer; // drag and drop the sprite renderer component
 
@@ -13,6 +15,7 @@ public class Vegetables : MonoBehaviour {
 	private float verticalVelocity;
 	private float speed;
 
+//	public GameObject splashRef; 
 
 	private bool isSliced = false;
 
@@ -24,7 +27,7 @@ public class Vegetables : MonoBehaviour {
 	public Sprite[] sprites;// creating an array of sprites
 	private int spriteIndex; // index position of the array
 	private float lastSpriteUpdate; // last frame sprite updated
-	private float spriteUpdateDelta = 0.101f;// time between each frame
+	private float spriteUpdateDelta = 0.050f;// time between each frame
 	private float rotationSpeed;
 
 
@@ -71,6 +74,7 @@ public class Vegetables : MonoBehaviour {
 			// ready to reuse the object that is not active
 			if (!isSliced)
 				GameManager.Instance.loseLife(); // accessing the instance of the gamemanager seen in gamemanager script and calling the lose life function.
+			
 		}
 	
 	}
@@ -82,6 +86,7 @@ public class Vegetables : MonoBehaviour {
 		if (isSliced) // if isSliced is true then return so cannot run twice
 			return;
 			
+	
 
 		if (verticalVelocity < 0.5f) { // when you slice the vegetable give it a small bump up
 			verticalVelocity = 0.5f; // being pushed upwards creating that effect
@@ -89,9 +94,11 @@ public class Vegetables : MonoBehaviour {
 			speed = speed * 0.5f; // setting the speed of the slice to 0.5floats
 			isSliced = true; // set isSliced to true if the veggie is being hit
 
-			soundManagerScript.Instance.PlaySound(1); 
+//			Instantiate(splashRef);
+ 
 
 			GameManager.Instance.incrementScore(1); // increment the score by 1 locating the increment score fucntion in the gameManager script
+			soundManagerScript.Instance.PlaySound(1);
 		}
 
 	}
