@@ -87,6 +87,7 @@ public class Vegetables : MonoBehaviour {
 			return;
 			
 	
+	
 
 		if (verticalVelocity < 0.5f) { // when you slice the vegetable give it a small bump up
 			verticalVelocity = 0.5f; // being pushed upwards creating that effect

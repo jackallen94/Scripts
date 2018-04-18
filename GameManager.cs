@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject carrotPrefab;
 	public GameObject brocPrefab;
 	public GameObject onionPrefab;
-	public GameObject bomb;
+	public GameObject Bomb;
 
 	public Sprite TREES;
 
@@ -183,17 +183,16 @@ public class GameManager : MonoBehaviour {
 			v = Instantiate(onionPrefab).GetComponent<Vegetables>();
 			veggies.Add(v);
 		
-		v = Instantiate(carrotPrefab).GetComponent<Vegetables>();
+			v = Instantiate(carrotPrefab).GetComponent<Vegetables>();
 			veggies.Add(v);
 
-		v = Instantiate(tomatoPrefab).GetComponent<Vegetables>();
+			v = Instantiate(tomatoPrefab).GetComponent<Vegetables>();
 			veggies.Add(v);
 
 			v = Instantiate(brocPrefab).GetComponent<Vegetables>();
 			veggies.Add(v);
 
-
-			v = Instantiate(bomb).GetComponent<Vegetables>();// create a new instance of a vegetable using a prefab
+			v = Instantiate(Bomb).GetComponent<Vegetables>();// create a new instance of a vegetable using a prefab
 			veggies.Add(v);
 
 
@@ -240,9 +239,38 @@ public class GameManager : MonoBehaviour {
 
 	void setSprite()
 	{
-		gameObject.GetComponent<SpriteRenderer> ().sprite = TREES;
+		gameObject.GetComponent<SpriteRenderer> ().sprite = TREES; // using in the changing of backgrounds, changing the sprite to TREES which is the second background. 
 
 	}
+
+
+//	void OnCollisionEnter2D (Collision2D col)
+//	{
+//		if(col.gameObject.tag == "Bomb")
+//		{
+//			
+//			Destroy(col.gameObject);
+//			life = 0;
+//			Debug.Log ("was i hit");
+//		}
+//	}
+
+	void onCollisionEnter2D(Collision2D col)
+	{
+		if(col.gameObject.tag == "Bomb")
+
+		{
+			
+			Destroy(gameObject);
+			GameManager.Instance.loseLife ();
+
+		}
+
+
+
+
+	}
+
 
 
 	public void loseLife() 
@@ -252,8 +280,8 @@ public class GameManager : MonoBehaviour {
 
 		life--;
 		lifepoints [life].enabled = false;
-		if (life == 0)
 
+		if (life == 0)
 			Death();
 
 		}
