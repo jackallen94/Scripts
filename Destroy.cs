@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class Destroy : MonoBehaviour {
 
-	void onCollisionEnter(Collision col)
-	{
-		if(col.gameObject.tag == "bomb")
+//	void OnTriggerEnter2D(Collider2D col) 
+//
+//	{
+//
+//		if (col.tag == "Blade") {
+//
+//
+//			Debug.Log ("hit");
+//			Destroy (gameObject);
+//
+//		}
 
-		{
-			Destroy(gameObject);
-
-		}
 
 	}
 
 
-}
+

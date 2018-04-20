@@ -6,6 +6,7 @@ public class Vegetables : MonoBehaviour {
 
 	private const float Gamegravity = 2.0f; // setting a private constant of the gravity to 2 floats so this cannot be changed
 
+	public GameObject tomatobomb;
 
 
 	public bool IsActive{set; get;} // if object is not active we can reuse it without having to create new veggie
@@ -27,7 +28,7 @@ public class Vegetables : MonoBehaviour {
 	public Sprite[] sprites;// creating an array of sprites
 	private int spriteIndex; // index position of the array
 	private float lastSpriteUpdate; // last frame sprite updated
-	private float spriteUpdateDelta = 0.050f;// time between each frame
+	private float spriteUpdateDelta = 0.025f;// time between each frame
 	private float rotationSpeed;
 
 
@@ -52,9 +53,10 @@ public class Vegetables : MonoBehaviour {
 		verticalVelocity -= Gamegravity * Time.deltaTime; // using the const above allows us to set the gravity for 2.0 floats for all vegetables. 
 		transform.position += new Vector3(speed,verticalVelocity,0) * Time.deltaTime; // setting z to 0 and deltatime is the amount of time it takes to complete the last frame 
 		transform.Rotate(new Vector3(0,0,rotationSpeed) * Time.deltaTime); // delta time so when we pause game veggie will stop rotating
-		if (isSliced) 
-		
+		if (isSliced)
+
 		{
+			
 
 			if (spriteIndex != sprites.Length-1 && Time.time - lastSpriteUpdate > spriteUpdateDelta) // go and update the sprite
 			
@@ -79,33 +81,81 @@ public class Vegetables : MonoBehaviour {
 	
 	}
 
+//	void OnTriggerEnter2D(Collider2D col)
+//	{
+//
+//		if (col.tag == "Blade") {
+//
+//			Destroy (tomatobomb);
+//			Debug.Log ("hit");
+////			Destroy (gameObject);
+//
+//		}
+//
+//	}
+//
+//	void OnTriggerEnter2D (Collider2D col)
+//	{
+//		if(col.gameObject.tag == "Blade" && isSliced == true)
+//		{
+//
+//			Destroy (gameObject);
+//			//			life = 0;
+//			Debug.Log ("was i hit");
+//			print ("was i hit");
+//		}
+//	}
 
-
-	public void SlicingVeggie() 
+	public void SlicingVeggie()
 	{
-		if (isSliced) // if isSliced is true then return so cannot run twice
-			return;
-			
+		if (isSliced)
+			// if isSliced is true then return so cannot run twice
+		return;
+
+
 	
-	
+//		if (GameManager.Instance.Bomb) {
+//			isSliced = true;
+//
+//
+//		}   
+
+
 
 		if (verticalVelocity < 0.5f) { // when you slice the vegetable give it a small bump up
 			verticalVelocity = 0.5f; // being pushed upwards creating that effect
 
 			speed = speed * 0.5f; // setting the speed of the slice to 0.5floats
-			isSliced = true; // set isSliced to true if the veggie is being hit
+//			isSliced = true; // set isSliced to true if the veggie is being hit
 
 //			Instantiate(splashRef);
+
+			isSliced = true;
+
+				
  
+//			if (isSliced == true && ) {
+//				Destroy (GameManager.Instance.Bomb);
+//				GameManager.Instance.Death ();
+//				Debug.Log ("im destroyed");
+//			}
+
+		
+
 
 			GameManager.Instance.incrementScore(1); // increment the score by 1 locating the increment score fucntion in the gameManager script
 			soundManagerScript.Instance.PlaySound(1);
 		}
 
+	
+
 	}
 
-
-
+//
+//	void OnCollisionEnter(Collision collision) {
+//		if(collision.gameObject.tag == "Bomb")
+//			Destroy(gameObject);
+	//}
 
 
 

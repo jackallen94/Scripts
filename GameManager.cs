@@ -11,10 +11,10 @@ public class GameManager : MonoBehaviour {
 	// creating an instance of the game manager so it can be accessed 
 	public static GameManager Instance{set;get;} // property
 
-	private const float SLICE_FORCE = 0.0001f; // see github for explanation part 19
+	private const float SLICE_FORCE = 0.100f; // see github for explanation part 19
 
 
-	private List<Vegetables> veggies = new List<Vegetables> (); // pooling mechanic to grab our prefabs below
+	public List<Vegetables> veggies = new List<Vegetables> (); // pooling mechanic to grab our prefabs below
 	//instantiate our vegatables
 	public GameObject vegetablesPrefab; // grab the objects that are prefabs of our vegetables object (a prefab allows us to easily create duplicates that store all properties inside the prefab) 
 	public GameObject tomatoPrefab;
@@ -68,6 +68,9 @@ public class GameManager : MonoBehaviour {
 		veggieCollider = new Collider2D[0]; // start the collider at beginning of array which is always 0 
 		newGame(); // new game is launched
 
+//		if( == true)
+//		Bomb = GameObject.FindWithTag("Bomb");
+
 	
 
 	}
@@ -83,6 +86,7 @@ public class GameManager : MonoBehaviour {
 		highScoreText.text = "BEST :  " + highScore.ToString();
 		Time.timeScale = 1;
 	
+	   
 
 		// timescale used for slowing time or slow motion
 		// in this case used to stop run time of game
@@ -97,10 +101,11 @@ public class GameManager : MonoBehaviour {
 			Destroy(v.gameObject); // removing the game object from scene
 
 
-
 		veggies.Clear(); // remove all veggies from scene and start fresh
 
 		deathMenu.SetActive(false);
+
+	
 
 	}
 
@@ -131,6 +136,7 @@ public class GameManager : MonoBehaviour {
 //			Physics2D.RaycastAll(new Vector2(pos.x,pos.y),Camera.main.transform.forward,
 			pos.z = -1;
 			trail.position = pos;
+
 
 			Collider2D[] thisFramesVeggie = Physics2D.OverlapPointAll (new Vector2 (pos.x, pos.y), LayerMask.GetMask ("Vegetables"));
 			// overlapPointAll returns us a 2d collider array
@@ -168,7 +174,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 
-	private Vegetables GetVegetable() //  this will either get me something that is already isActive seen in our vegetables script or it will create a new instance
+	public Vegetables GetVegetable() //  this will either get me something that is already isActive seen in our vegetables script or it will create a new instance
 	{
 
 		Vegetables v = veggies.Find (x => !x.IsActive); // this was quite difficult basically this looks through the list of veggies to find the first one that is not active, x being the veggie its looking at right now and also setting vegetable to variable v
@@ -244,39 +250,39 @@ public class GameManager : MonoBehaviour {
 	}
 
 
-//	void OnCollisionEnter2D (Collision2D col)
+//	void OnTriggerEnter2D (Collider2D col)
 //	{
-//		if(col.gameObject.tag == "Bomb")
+//		if(col.tag == "blade")
 //		{
 //			
-//			Destroy(col.gameObject);
-//			life = 0;
+//			GameManager.Destroy(Bomb);
+////			life = 0;
 //			Debug.Log ("was i hit");
+//			print ("was i hit");
 //		}
 //	}
+//
+//	void onCollisionEnter2D(Collision2D col)
+//	{
+//		if (col.gameObject = "Bomb") {
+//			
+////			foreach (Vegetables v in veggies)
+//				Destroy (Bomb);
+////			GameManager.Instance.loseLife ();
+//			Debug.Log ("will it work");		
+//
 
-	void onCollisionEnter2D(Collision2D col)
-	{
-		if(col.gameObject.tag == "Bomb")
-
-		{
-			
-			Destroy(gameObject);
-			GameManager.Instance.loseLife ();
-
-		}
-
-
-
-
-	}
-
+////
+////
+	
+//
 
 
 	public void loseLife() 
 	{
 		if (life == 0)
 			return;
+
 
 		life--;
 		lifepoints [life].enabled = false;
@@ -291,12 +297,15 @@ public class GameManager : MonoBehaviour {
 
 	public void Death()
 	{
+		
 		isPaused = true;
 		deathMenu.SetActive(true);
 
 
+		}
 
-	}
+
+
 
 
 	public void pauseGame()
