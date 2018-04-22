@@ -318,7 +318,7 @@ public class GameManager : MonoBehaviour {
 	{
 		isPaused = true;
 		Unlock.SetActive (true);
-
+		soundManagerScript.Instance.PlaySound(0); 
 	}
 
 	public void onResume()
