@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour {
 
 
 	private float lastSpawn;// subject to change 
-	private float normalSpawn = 1f;
+	private float normalSpawn = 1;
 
 	public Transform trail; // game component trail
 
@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour {
 	public Image[] lifepoints;
 	public GameObject pauseMenu; // creating new gameobject that can be accessed in the inspector using public
 	public GameObject deathMenu;
+	public GameObject Unlock;
 	public GameObject changeBackground;
 
 
@@ -104,7 +105,7 @@ public class GameManager : MonoBehaviour {
 		veggies.Clear(); // remove all veggies from scene and start fresh
 
 		deathMenu.SetActive(false);
-
+		Unlock.SetActive (false);
 	
 
 	}
@@ -223,10 +224,17 @@ public class GameManager : MonoBehaviour {
 			//PlayerPrefs.DeleteAll(); to delete highscore in unity
 			}
 
-		if (score == 2) {
+		if (score == 12) {
+
+
+			UnlockMenu();
 			setSprite ();
 
+
+
 		}
+
+
 //		if (score == 5) {
 //
 //			{
@@ -305,8 +313,22 @@ public class GameManager : MonoBehaviour {
 		}
 
 
+	public void UnlockMenu() 
 
+	{
+		isPaused = true;
+		Unlock.SetActive (true);
 
+	}
+
+	public void onResume()
+	{
+
+		isPaused = false;
+		Unlock.SetActive (false);
+		Time.timeScale = 1;
+
+	}
 
 	public void pauseGame()
 	{

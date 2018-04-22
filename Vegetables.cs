@@ -133,15 +133,17 @@ public class Vegetables : MonoBehaviour {
 			isSliced = true;
 
 				
- 
-//			if (isSliced == true && ) {
-//				Destroy (GameManager.Instance.Bomb);
+// 
+//			if (isSliced == true && gameObject.tag == "Bomb") {
+//				Destroy (gameObject);
 //				GameManager.Instance.Death ();
 //				Debug.Log ("im destroyed");
+//			} else {
+//
+//				GameManager.Instance.newGame ();
+//
 //			}
-
-		
-
+//
 
 			GameManager.Instance.incrementScore(1); // increment the score by 1 locating the increment score fucntion in the gameManager script
 			soundManagerScript.Instance.PlaySound(1);
